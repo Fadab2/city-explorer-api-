@@ -10,16 +10,24 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 app.get('/weather', handleGetWeather);
-app.get('/*', (re, res) => res.status(404).send('not found'));
+app.get('/*', (req, res) => res.status(404).send('not found'));
 
+//const weather = `https://api.weatherbit.io/v2.0/current?&lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`
 
 function handleGetWeather(req, res) {
 
     const cityName = req.query.city;
+
+
     const lat = req.query.lat;
     const lon = req.query.lon;
+    console.log(cityName)
+    console.log(lat)
+    console.log(lon)
     try {
-        console.log(cityName);
+
+        //const apiResults = await axios.get();
+
         const cityToSend = weather.find(city => {
 
             if ((city.lat === lat && city.lon === lon) || city.city_name === cityName) {
